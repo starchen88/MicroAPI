@@ -1,6 +1,6 @@
 # MicroAPI
 
-一个ASP.NET的易用、高性能、灵活的轻量级微服务组件。
+一个基于ASP.NET HttpHandler的易用、高性能、灵活的轻量级微服务组件。
 
 ## 功能特性
 
@@ -14,11 +14,13 @@
 
 * 对于json和xml，支持自定义设置序列化组件
 
-* MIT协议，开源开放，持续维护
+* MIT协议，自由使用，开源开放，持续维护
 
 ## 入门须知
 
 * MicroAPI通过`Request.PathInfo`值来匹配不同的操作，在调用时需要指定正确的PathInfo
+
+* MicroAPI包含两个文件：MicroAPI.cs（同步版）、MicroAPIAsync.cs（异步版）
 
 * MicroAPI包含四个类：`MicroAPI`(针对同步请求)、`MicroAPI<T>`（针对同步请求，针对需要对象参与操作的情况）、`MicroAPIAsync`（针对异步请求）、`MicroAPIAsync<T>`（针对异步请求，针对需要对象参与操作的情况）
 
@@ -34,7 +36,9 @@
 
 * MicroAPI提供了JsonSerializeFunc（自定义Json序列化）、XmlSerializeFunc（自定义Xml序列化）、ExceptionHandler（自定义异常处理）三个配置项，均为静态成员，你可以在Global.asax或App_Start中设置
 
-* 支持版本>=.NET 4.0，如果你需要在.NET 2.0使用，只需要将Func和Action明码定义一遍即可
+* 当前尚不支持区分get和post，敬请期待下一版本
+
+* 支持版本>=.NET 4.0，如果你需要在.NET 2.0使用，只需要进行少量修改即可
 
 ## 简单示例
 
@@ -104,11 +108,17 @@ function show_server_time() {
 
 * 关于如何选择同步和异步MicroAPI：对于简单操作，建议使用同步MicroAPI,省略不必要的线程开销；对于涉及磁盘IO、网络IO、数据库操作等本身就是异步行为的操作，推荐使用异步MicroAPI
 
+* MicroAPI默认使用`System.Web.Script.Serialization.JavaScriptSerializer`和`System.Xml.Serialization.XmlSerializer`，建议你更改为自己常用的序列化组件
+
+* 开源不宜，长期坚持更难，如果对你有用，请不要吝啬你的关注、建议、加星、推广、捐赠
+
 ## 下一步
 
 * 收集bug问题和修改意见，修复完善
 
 * 增加英文文档
+
+* 增加对get和post的区分
 
 * 设计下一版本，初步考虑将同步和异步合并为单一类
 
