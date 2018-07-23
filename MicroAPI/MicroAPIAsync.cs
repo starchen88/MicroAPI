@@ -50,6 +50,12 @@ namespace MicroAPI
         /// <param name="action"></param>
         protected void RegActionAsync(string name, Action<HttpContext> action)
         {
+#if DEBUG
+            if (actionMap.ContainsKey("/" + name))
+            {
+                throw new ArgumentException("pathinfo已存在，不能注册");
+            }
+#endif
             actionMap.Add("/" + name, action);
         }
         /// <summary>

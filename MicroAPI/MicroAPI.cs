@@ -56,6 +56,12 @@ namespace MicroAPI
         /// <param name="action"></param>
         protected void RegAction(string name, Action<HttpContext> action)
         {
+#if DEBUG
+            if (actionMap.ContainsKey("/" + name))
+            {
+                throw new ArgumentException("pathinfo已存在，不能注册");
+            }
+#endif
             actionMap.Add("/" + name, action);
         }
 
@@ -181,7 +187,7 @@ namespace MicroAPI
 #endif
                 var state = GetState(context);
                 if (EqualityComparer<TState>.Default.Equals(state, default(TState)))
-                {                    
+                {
                     throw new Exception("State为空");
                 }
                 else
