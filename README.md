@@ -34,7 +34,7 @@
 *  `protected void RegJsonAction<T>(string name, Func<HttpContext, T> action)`
 *  `protected void RegXmlAction<T>(string name, Func<HttpContext, T> action)`
 
-* MicroAPI提供了JsonSerializeFunc（自定义Json序列化）、XmlSerializeFunc（自定义Xml序列化）、ExceptionHandler（自定义异常处理）三个配置项，均为静态成员，你可以在Global.asax或App_Start中设置
+* MicroAPI提供了JsonSerializeFunc（自定义Json序列化）、XmlSerializeFunc（自定义Xml序列化）、ExceptionHandler（自定义异常处理）三个配置项，均为静态成员，你可以在Global.asax或App_Start中设置；由于时静态成员，请注意保持您的设置方法的线程安全性
 
 * 当前尚不支持区分get和post，敬请期待下一版本
 

@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Author:Star Chen(techenstar@qq.com)
+//License:MIT License
+//Url:https://github.com/techenstar/MicroAPI
+//Version:1.0.0
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Web;
@@ -122,7 +126,7 @@ namespace MicroAPI
                 {
                     if (!ExceptionHandler(context, ex))
                     {
-                        throw ex;
+                        throw;
                     }
                     else
                     {
