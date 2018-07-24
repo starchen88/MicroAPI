@@ -36,8 +36,6 @@
 
 * MicroAPI提供了JsonSerializeFunc（自定义Json序列化）、XmlSerializeFunc（自定义Xml序列化）、ExceptionHandler（自定义异常处理）三个配置项，均为静态成员，你可以在Global.asax或App_Start中设置；由于时静态成员，请注意保持您的设置方法的线程安全性
 
-* 当前尚不支持区分get和post，敬请期待下一版本
-
 * 支持版本>=.NET 4.0，如果你需要在.NET 2.0使用，只需要进行少量修改即可
 
 ## 简单示例
@@ -102,7 +100,7 @@ function show_server_time() {
 
 5. 客户端访问一般处理程序，如xxx.ashx/action1
 
-未尽之处请参见Demo，或加入QQ群:163203102
+未尽之处请参见Demo，有意见建议请提交issue，非正式交流请加QQ群：163203102
 
 ## 最佳实践
 
@@ -110,15 +108,15 @@ function show_server_time() {
 
 * MicroAPI默认使用`System.Web.Script.Serialization.JavaScriptSerializer`和`System.Xml.Serialization.XmlSerializer`，建议你更改为自己常用的序列化组件
 
-* 开源不宜，长期坚持更难，如果对你有用，请不要吝啬你的关注、建议、加星、推广、捐赠
+* 当前尚不支持区分get和post，你可以通过针对不同http method设置不同的action name（pathinfo）来绕过这个问题
+
+* 开源不宜，长期坚持更难，如果对你有用，请不要吝啬你的关注、加星、建议、推广、贡献、捐赠
 
 ## 下一步
 
 * 收集bug问题和修改意见，修复完善
 
 * 增加英文文档
-
-* 增加对get和post的区分
 
 * 设计下一版本，初步考虑将同步和异步合并为单一类
 
