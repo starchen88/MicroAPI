@@ -29,11 +29,12 @@
 * `MicroAPIAsync`和`MicroAPIAsync<T>`的注册方法为RegXXXActionAsync，之所以添加Async是为未来可能的同步和异步MicroAPI合并为单一类避免冲突、保持向后兼容
 
 * MicroAPI提供四个方法`RegAction、RegTextAction、RegJsonAction、RegXmlAction`，分别针对不同的返回数据，包含两个参数：第一个参数为使用PathInfo匹配的字符串，区分大小写，不包含/；第二个参数为一个参数为HttpContext的委托，MicroAPI<T>和MicroAPIAsync<T>的RegXXXAction的第二个参数委托还包含T参数。定义如下：
-*  `protected void RegAction(string name, Action<HttpContext> action)`
-*  `protected void RegTextAction(string name, Func<HttpContext, string> action)`
-*  `protected void RegJsonAction<T>(string name, Func<HttpContext, T> action)`
-*  `protected void RegXmlAction<T>(string name, Func<HttpContext, T> action)`
-
+```C# 
+protected void RegAction(string name, Action<HttpContext> action)
+protected void RegTextAction(string name, Func<HttpContext, string> action)
+protected void RegJsonAction<T>(string name, Func<HttpContext, T> action)
+protected void RegXmlAction<T>(string name, Func<HttpContext, T> action)
+```
 * MicroAPI提供了JsonSerializeFunc（自定义Json序列化）、XmlSerializeFunc（自定义Xml序列化）、ExceptionHandler（自定义异常处理）三个配置项，均为静态成员，你可以在Global.asax或App_Start中设置；由于时静态成员，请注意保持您的设置方法的线程安全性
 
 * 支持版本>=.NET 4.0，如果你需要在.NET 2.0使用，只需要进行少量修改即可
@@ -44,7 +45,7 @@ Demo文件夹中的Default.aspx包含常用的几种Demo；AsyncDemo.aspx中包�
 
 服务器端示例：
 
-```
+```C#
 public class Demo : MicroAPI
 {
     public Demo()
@@ -80,7 +81,7 @@ public class Demo : MicroAPI
 
 客户端示例，注意PathInfo段：
 
-```
+```javascript
 function show_server_time() {
     $.get("Demo.ashx/get_server_time", {}, function (data) {
         alert(data);
